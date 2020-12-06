@@ -84,6 +84,17 @@ TRG = Field(tokenize = tokenize_en,
 #train_data, valid_data, test_data = WMT14.splits(exts = ('.de', '.en'),fields = (SRC, TRG))
 train_data, valid_data, test_data = Multi30k.splits(exts = ('.de', '.en'), fields = (SRC, TRG))
 
+def partial_shuffle(data):
+    M = data.shape[1]
+    data = data.t()
+    N = data.shape[0] # batch size
+    splits = torch.from_numpy(np.random.randint(M, size=N))
+    shifted = []
+    for i, row in enumerate(data):
+        shifted.append(torch.cat((row[splits[i]:], row[:splits[i]])))
+    return torch.stack(shifted).t()
+
+train_data = partial_shuffle(train_data)
 SRC.build_vocab(train_data, min_freq = 2)
 TRG.build_vocab(train_data, min_freq = 2)
 
