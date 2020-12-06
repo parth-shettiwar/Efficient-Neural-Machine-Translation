@@ -23,13 +23,13 @@ print(f"Used: {get_size(svmem.used)}") ; print(f"Percentage: {svmem.percent}%")
 
 """# GPU Information"""
 
-! nvidia-smi
+#! nvidia-smi
 
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-!pip install torchtext==0.6.0
+#!pip install torchtext==0.6.0
 from torchtext.data.metrics import bleu_score
 
 #from torchtext.datasets import Multi30k
@@ -43,6 +43,7 @@ import random
 import math
 import time
 
+import matplotlib.pyplot as plt
 SEED = 1234
 
 random.seed(SEED)
@@ -51,8 +52,8 @@ torch.manual_seed(SEED)
 torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
-!python -m spacy download en
-!python -m spacy download de
+#!python -m spacy download en
+#!python -m spacy download de
 
 spacy_de = spacy.load('de')
 spacy_en = spacy.load('en')
@@ -91,7 +92,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 BATCH_SIZE = 128
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+print(device)
 train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
     (train_data, valid_data, test_data), 
      batch_size = BATCH_SIZE,
@@ -120,7 +121,7 @@ class Encoder(nn.Module):
         
         #embedded = [src len, batch size, emb dim]
                 
-        packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, src_len)
+        packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, src_len.cpu())
                 
         packed_outputs, hidden = self.rnn(packed_embedded)
                                  
@@ -457,7 +458,7 @@ for epoch in range(N_EPOCHS):
     print(f'\tTrain Loss: {train_loss:.3f} | Train PPL: {math.exp(train_loss):7.3f}')
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. PPL: {math.exp(valid_loss):7.3f}')
 
-model.load_state_dict(torch.load('nlp_proj.pt'))
+#model.load_state_dict(torch.load('nlp_proj.pt'))
 
 test_loss = evaluate(model, test_iterator, criterion)
 
@@ -542,7 +543,7 @@ translation, attention = translate_sentence(src, SRC, TRG, model, device)
 
 print(f'predicted trg = {translation}')
 
-display_attention(src, translation, attention)
+#display_attention(src, translation, attention)
 
 def calculate_bleu(data, src_field, trg_field, model, device, max_len = 50):
     
