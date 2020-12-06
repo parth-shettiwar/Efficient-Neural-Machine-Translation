@@ -94,7 +94,7 @@ def partial_shuffle(data):
         shifted.append(torch.cat((row[splits[i]:], row[:splits[i]])))
     return torch.stack(shifted).t()
 
-train_data = np.array(train_data)
+train_data = np.fromiter(train_data,float)
 
 train_data = partial_shuffle(train_data)
 SRC.build_vocab(train_data, min_freq = 2)
