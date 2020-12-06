@@ -273,13 +273,14 @@ class Decoder(nn.Module):
         
         prediction = self.fc_out(torch.cat((output, weighted, embedded), dim = 1))
 
-        #targetstargets.view([-1,1]).expand([-1,____]).contiguous().view(-1)
+        #targets=targets.view([-1,1]).expand([-1,____]).contiguous().view(-1)
         weight_noise=torch.zeros_like(self.fc_out.weight).cuda()
         neg_h=-latent/torch.sqrt(torch.sum(latent**2,1,keepdim=True)+1e-8)
         n_output=torch.sqrt(torch.sum(latent**2,1,keepdim=True)+1e-8)
         #n_w=
         #cos_theta=
         indicator=torch.gt(cos_theta,0e-1).view(-1,1).type(torch.cuda.FloatTensor)
+        epsilon=0.005
         sigma=epsilon*n_w*indicator
         weight_noise[targets.view(-1)]=sigma.detach()*neg_h.detach()
         noise_outputs=(latent*weight_noise[targets]).sum(1)
