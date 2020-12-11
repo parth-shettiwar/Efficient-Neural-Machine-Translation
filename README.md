@@ -1,5 +1,5 @@
 ## CS626 Speech and Natural Language Processing and the Web: Project
-**Efficient Neural Machine Translation**  
+**Project Title: Efficient Neural Machine Translation**  
 Anshul Tomar 170070007  
 Anwesh Mohanty 170070009  
 Parth Shettiwar 170070021  
