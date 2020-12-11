@@ -16,7 +16,7 @@ To solve these problems, we:
 3. Presented a detailed characterization of model performance and how each component affects it.
 4. Conducted a thorough comparative study with a SOTA transformer to show how effectively we have achieved our goals.  
   
-Code Base:    
+**Code Base**:    
 The Codes Folder contains 2 .ipynb files.  
 1. Ours.ipynb  : Our NMT Model based on RNNsearch with adverserial training and noise added to avoid overfitting.  
 2. Transformer.ipynb  : This model is based on **All you need is Attention** paper. We have ran the transformer on Multi30k Dataset.  
