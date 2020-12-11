@@ -9,8 +9,7 @@ The Codes Folder contains 2 .ipynb files.
 1)Ours.ipynb  : Our NMT Model based on RNNsearch with adverserial training and noise added to avoid overfitting.  
 2)Transformer.ipynb  : This model is based on **All you need is Attention** paper. We have ran the transformer on Multi30k Dataset.  
 To run them, just upload them on a collab notebook, and run all cells.There is no need to download the dataset separetely, it will be automatically imported from torchtext datasets. Also all necessary libraries will be installed  in initial few blocks of notebook.       
-Both models have been trained on Multi30k English-German Dataset. The final block computes the Bleu score in each. The training is done for 10 epochs and can  
-be changed in the training bloch by varying the parameter N_EPOCHS.
+Both models have been trained on Multi30k English-German Dataset. The final block computes the Bleu score in each. The training is done for 10 epochs and can be changed in the training bloch by varying the parameter N_EPOCHS.
 
 The basic architecture of code consists of following:    
 1)Encoder: Consists of an Embedding layer, bi-directional GRU and a Linear layer     
