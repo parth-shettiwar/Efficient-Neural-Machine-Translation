@@ -1,0 +1,21 @@
+Our RNNSearch model can be run by running Ours.ipynb Jupyter Notebook. Running all the cells would give the results using the default parameters that we have set. The defaults hyper parameters can be changed by modifying the following blocks in the code:
+
+1) BATCH_SIZE: It is present in cell 5. Can be increased/decreased depending upon the GPU resources available at hand. Default = 128.
+
+2) Epsilon (encoder): It is present in cell 6 in Encoder block. It decides the weight of the random noise added to the hidden states of the encoder. Shouldn't be kept too high otherwise it will lead to unpredictable functioning. Default = 0.005.
+
+3) Epsilon (decoder): It is present in cell 6 in Decoder block. It decides the weight of the adversarial MLE traning noise that is added to the output of the decoder GRU. 0.005-0.02 is an ideal range for this to get good predictions. Default = 0.005.
+
+Below 5 hyperparameters are present in cell 7.
+
+4) ENC_EMB_DIM: Controls the embedding dimension of source language in Encoder. Can be increased but will lead to increase in model complexity and size. Default = 128.
+
+5) DEC_EMB_DIM: Controls the embedding dimension of target language in Decoder. Default = 128.
+
+6) ENC_HID_DIM: Number of hidden states in RNN of Encoder. Default = 256.
+
+7) DEC_HID_DIM: Number of hidden states in RNN of Decoder. Default = 256.
+
+8) ENC_DROPOUT and DEC_DROPOUT: Dropout value to be applied to the embedding layers of both Encoder and Decoder. Default(both) = 0.5.
+
+9) N_EPOCHS: Present in cell 10. Determines the number of training epochs.
