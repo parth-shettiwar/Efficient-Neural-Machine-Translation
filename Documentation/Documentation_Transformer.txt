@@ -1,0 +1,24 @@
+The Tranformer model can be run by running Transformer.ipynb Jupyter Notebook. Running all the cells would give the results using the default parameters that we have set. The final cell gives the Bleu score. The defaults hyper parameters can be changed by modifying the following blocks in the code:
+
+1) BATCH_SIZE: It is present in cell 11. Can be increased/decreased depending upon the GPU resources available at hand. Default = 128. 
+
+2) ENC_HEADS and DEC_HEADS, decide the number of attention heads to be used. Default = 8. Present in Cell 19
+
+3) ENC_LAYERS and DEC_LAYERS: Decides the number of Encoder and Decoder layers to be used. Default = 3. Present in Cell 19
+
+4) Cell 24 has paramter: Learning Rate. Default = 0.0005
+
+5) ENC_DROPOUT and DEC_DROPOUT: Dropout value to be applied to the embedding layers of both Encoder and Decoder. Default(both) = 0.1. Present in Cell 19
+
+6) N_EPOCHS: Present in cell 29. Determines the number of training epochs.Default = 10
+
+Main functions and Classes:
+1)translate_sentence function translates sentences
+
+2)train function for training
+
+3)Class Encoder, Decoder and Seq2Seq form the basis of Transformer architecture
+
+4)They further use classes EncoderLayer, DecoderLayer, PositionwiseFeedforwardLayer, and MultiHeadAttentionLayer in their implementation whose parameters are governed by the mentioned above.
+
+5)display_attention function shows the attention maps.
